@@ -12,6 +12,7 @@ namespace Partee_LinkedListSearch
         private Node _next;
         private Node _prev;
 
+
         public MetaData Person
         {
             get { return _person; }
@@ -32,5 +33,6 @@ namespace Partee_LinkedListSearch
         {
             _person = person;
         }
+
     }
 }

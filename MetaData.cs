@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Partee_LinkedListSearch
 {
-    public class MetaData
+    public class MetaData : IEquatable<MetaData>
     {
         private char _gender;
         private string _name;
         private int _rank;
-        private int _overall;
-        private int _males;
-        private int _females;
+
         public char Gender
         {
             get { return _gender; }
@@ -29,37 +27,26 @@ namespace Partee_LinkedListSearch
             get { return _name; }
             set { _name = value; }
         }
-        public int Overall
-        {
-            get { return _overall; }
-            set { _overall++; }
-        }
-        public int MaleNames
-        {
-            get { return _males; }
-            set { _males++; }
-        }
-        public int FemaleNames
-        {
-            get { return _females; }
-            set { _females++; }
-        }
         public MetaData(string name, char gender, int rank)
         {
             _gender = gender;
             _name = name;
             _rank = rank;
+        }
 
-            Overall++;                     
-            if (gender == 'F')
-            {
-                FemaleNames++;
-            }
-            if (gender == 'M')
-            {
-                MaleNames++;
-            }
-
+        public static bool operator >=(MetaData One, MetaData Two)
+        {
+            int result = string.Compare(One.Name, Two.Name);
+            return result >= 0;
+        }
+        public static bool operator <=(MetaData One, MetaData Two)
+        {
+            int result = string.Compare(One.Name, Two.Name);
+            return result <= 0;
+        }
+        public bool Equals(MetaData other)
+        {
+            return this.Name == other.Name;
         }
     }
 }

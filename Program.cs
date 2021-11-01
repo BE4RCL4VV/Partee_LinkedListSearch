@@ -9,12 +9,13 @@ namespace Partee_LinkedListSearch
         {
             LinkedList ListOPeeps = new LinkedList();
             Node head = new Node(new MetaData("A", 'A', -1));
+            ListOPeeps.Head = head;
             try
             {
-            //Pass the file path and file name to the StreamReader constructor
-             StreamReader stream = new StreamReader("C:\\Users\\parte\\source\\repos\\Partee_LinkedListSearch\\yob2019.txt");
-                //Read the first line of text
-                string line = stream.ReadLine();
+                //Pass the file path and file name to the StreamReader constructor
+                StreamReader stream = new StreamReader("C:\\Users\\parte\\source\\repos\\Partee_LinkedListSearch\\yob2019.txt");
+                    //Read the first line of text
+                    string line = stream.ReadLine();
                 //Continue to read until you reach end of file
                 while (line != null)
                 {
@@ -25,7 +26,7 @@ namespace Partee_LinkedListSearch
 
                     MetaData newPerson = new MetaData(nameData, genderData, rankData);
                     Node newNode = new Node(newPerson);
-                    ListOPeeps.AddNode(newNode, head);
+                    ListOPeeps.AddNode(newNode);
 
                     //Read the next line
                     line = stream.ReadLine();
@@ -42,6 +43,7 @@ namespace Partee_LinkedListSearch
             while (selection != "9")
             {
                 selection = Console.ReadLine();
+                // Name Search
                 if (selection == "1")
                 {
                     Console.WriteLine("Enter the Name you wish to search for: ");
@@ -59,6 +61,7 @@ namespace Partee_LinkedListSearch
                     Console.ReadLine();
                     PrintMenu();
                 }
+                // Overall Number of Nodes
                 if (selection == "2")
                 {
                     Console.WriteLine("Overall Count: " + ListOPeeps.Overall);
@@ -66,6 +69,7 @@ namespace Partee_LinkedListSearch
                     Console.ReadLine();
                     PrintMenu();
                 }
+                // Number of Female Nodes
                 if (selection == "3")
                 {
                     Console.WriteLine("Female Count: " + ListOPeeps.Females);
@@ -73,6 +77,7 @@ namespace Partee_LinkedListSearch
                     Console.ReadLine();
                     PrintMenu();
                 }
+                // Number of Male Nodes
                 if (selection == "4")
                 {
                     Console.WriteLine("Male Count: " + ListOPeeps.Males);
@@ -80,6 +85,7 @@ namespace Partee_LinkedListSearch
                     Console.ReadLine();
                     PrintMenu();
                 }
+                // Add Node with new data
                 if (selection == "5")
                 {
                     Console.Clear();
@@ -101,7 +107,7 @@ namespace Partee_LinkedListSearch
                         if (choiceInput == "1")
                         {
                             addedNode.Person.Name = addedNode.Person.Name + "_1x";
-                            ListOPeeps.AddNode(addedNode, head);
+                            ListOPeeps.AddNode(addedNode);
                             Console.WriteLine(addedNode.Person.Name + " added to list");
                             Console.ReadLine();
                             PrintMenu();
@@ -112,20 +118,14 @@ namespace Partee_LinkedListSearch
                         }
                     }                   
                 }
-
-            }
-
-            Node Current = ListOPeeps.Tail;
-            //while (Current != null)
-            //{
-                Console.WriteLine(Current.Person.Name + " " + Current.Person.Gender + " " + Current.Person.Rank);
-            //if (Current.Next != null)
-            //{ Current = Current.Next; }
-            //else { break; }               
-            //}
-        
-            Console.WriteLine("Top Male: " + ListOPeeps.TopMale.Name + " Rank: "+ ListOPeeps.TopMale.Rank + " Top Female: " + ListOPeeps.TopFemale.Name + " Rank: " + ListOPeeps.TopFemale.Rank); ;
-            Console.WriteLine("Overall: " + ListOPeeps.Overall + " Males: " + ListOPeeps.Males + " Females: " + ListOPeeps.Females);
+                // Top ranked data
+                if (selection == "6")
+                {
+                    Console.WriteLine("Top Male: " + ListOPeeps.TopMale.Name + " Rank: " + ListOPeeps.TopMale.Rank + " Top Female: " + ListOPeeps.TopFemale.Name + " Rank: " + ListOPeeps.TopFemale.Rank); ;
+                    Console.ReadLine();
+                    PrintMenu();
+                }
+            }           
         }
         public static void PrintMenu()
         {
@@ -137,6 +137,7 @@ namespace Partee_LinkedListSearch
                 "\t3: to Display the Total Count of Females\n" +
                 "\t4: to Display the Total Count of Males\n" +
                 "\t5: to Add a Name to the List\n" +
+                "\t6: to Show the Top Ranked Names\n" +
                 "\t9: To Exit the Madness");
         }
     }

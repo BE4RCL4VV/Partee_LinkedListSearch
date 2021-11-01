@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Partee_LinkedListSearch
 {
-    public class LinkedList : IEnumerable<Node>
+    public class LinkedList
     {
         private char[] _index = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n','o','p','q','r','s','t','u','v','w','x','y','z'};
         public Node Head { get; set; }
@@ -17,15 +17,6 @@ namespace Partee_LinkedListSearch
         public int Females { get; private set; }
         public MetaData TopMale { get; private set; }
         public MetaData TopFemale { get; private set; }
-        public IEnumerable<Node> GetEnumerator()
-        {
-            Node Current = Head;
-            while (Current != null)
-            {
-                yield return Current;
-                Current = Current.Next;
-            }
-        }
         public bool Contains(string person)
         {
             Node current = Head;
@@ -113,26 +104,24 @@ namespace Partee_LinkedListSearch
                 Current = Current.Next;
             }
             return false;
-        }
-        
-        public void AddNode(Node newNode, Node head)
+        }        
+        public void AddNode(Node newNode)
         {
-            Head = head;
-            
+            Node Current = Head;
             if (Tail == null)
             {
                 Head.Next = newNode;
                 Tail = newNode;
-                Tail.Previous = Head;               
+                Tail.Previous = Head;
             }
             else
             {
                 Node temp = Tail;
                 Tail.Next = newNode;
                 newNode.Previous = temp;
-
                 Tail = newNode;
             }
+            // Track top Rank name
             if (newNode.Person.Rank < newNode.Previous.Person.Rank)
             {
                 if (newNode.Person.Gender == 'M')
@@ -144,7 +133,7 @@ namespace Partee_LinkedListSearch
                     TopFemale = newNode.Person;
                 }
             }
-
+            // Increment Amounts of List
             Overall++;
             if (newNode.Person.Gender == 'M')
             {
@@ -154,26 +143,6 @@ namespace Partee_LinkedListSearch
             {
                 Females++;
             }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return (IEnumerator<Node>)GetEnumerator();
-        }
-
-        public IEnumerable GetEnumeratorReverse()
-        {
-            Node Current = Tail;
-            while (Current != null)
-            {
-                yield return Current;
-                Current = Current.Previous;
-            }
-        }
-
-        IEnumerator<Node> IEnumerable<Node>.GetEnumerator()
-        {
-            return (IEnumerator<Node>)GetEnumerator();
         }
     }
 }
