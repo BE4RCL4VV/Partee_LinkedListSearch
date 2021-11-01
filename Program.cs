@@ -13,7 +13,7 @@ namespace Partee_LinkedListSearch
             try
             {
                 //Pass the file path and file name to the StreamReader constructor
-                StreamReader stream = new StreamReader("C:\\Users\\parte\\source\\repos\\Partee_LinkedListSearch\\yob2019.txt");
+                StreamReader stream = new StreamReader("C:\\Users\\parte\\source\\repos\\Partee_LinkedListSearch\\textLoad\\yob2019.txt");
                     //Read the first line of text
                     string line = stream.ReadLine();
                 //Continue to read until you reach end of file
